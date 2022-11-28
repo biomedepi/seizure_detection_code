@@ -1,2 +1,6 @@
-# seizure_detection_code
-Base code for the BIOMED seizure detection challenge (ICASSP 2023)
+# BIOMED Seizure Detection Challenge
+
+This repository contains the base code and helper functions for the BIOMED seizure detection challenge, in the context of ICASSP 2023.
+For further information, please visit our [website](https://biomedepi.github.io/seizure_detection_challenge/).
+
+
