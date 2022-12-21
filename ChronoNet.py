@@ -1,18 +1,18 @@
 import tensorflow.keras as kr
-import numpy as np
-
 from tensorflow.keras import layers, Input
-from tensorflow.keras.callbacks import ModelCheckpoint, TensorBoard
-from tensorflow.keras.models import Model, Sequential, load_model
-import tensorflow.keras.activations as activations
+from tensorflow.keras.models import Model
 
-## Source: https://github.com/aguscerdo/EE239AS-Project
+
+## Source: S. Roy et al., “Chrononet: A deep recurrent neural net- work for abnormal eeg identification,”
+# in Artificial Intel- ligence in Medicine. 2019, pp. 47–56.
+
+##############################################################################################
+############################      DO NOT CHANGE THIS SCRIPT       ############################     
+##############################################################################################
 
 def net(inception=True, res=True, strided=True, maxpool=False, avgpool=False, batchnorm=True):
 
     input_shape = (400, 2)
-
-
     l2 = 0.01               # L2-regularization factor
     pad = 'same'
     padp = 'same'

@@ -1,7 +1,6 @@
 from dataclasses import dataclass, field
 import os
 import pickle
-import tensorflow as tf
 
 @dataclass
 class Settings:
@@ -14,10 +13,7 @@ class Settings:
     stride_s: float = 0.5
     batch_size: int = 16
     factor: int = 5
-    act: str = None
     lr: float = 0.0001
-    l2: float = 0
-    dropoutRate: float = 0
     nr_epochs: int = 50
     class_weights: dict = field(default_factory=dict)
     
