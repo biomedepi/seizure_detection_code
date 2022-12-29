@@ -1,7 +1,6 @@
 import os
 from numpy.random import seed
 import numpy as np
-import pandas as pd
 import tensorflow as tf
 import h5py
 
@@ -83,8 +82,8 @@ val_segments = routines.get_data_keys_subsample(val_file_list, config)
 ### Build data generators ###
 #######################################################################################################################
 
-gen_train = SegmentedGenerator(train_file_list, train_segments[0:32], train_montages, batch_size=32, shuffle=True)
-gen_val = SegmentedGenerator(val_file_list, val_segments[0:32], val_montages, batch_size=32, shuffle=True)
+gen_train = SegmentedGenerator(train_file_list, train_segments, train_montages, batch_size=32, shuffle=True)
+gen_val = SegmentedGenerator(val_file_list, val_segments, val_montages, batch_size=32, shuffle=True)
 
 
 #######################################################################################################################

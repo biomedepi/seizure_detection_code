@@ -33,8 +33,8 @@ def split_sets(data_path, montage):
 
     patient_list = [x for x in os.listdir(data_path) if 'P_ID' in x]
 
-    train_pats_list = random.sample(patient_list, int(np.round(len(patient_list)*0.3)))
-    val_pats_list = random.sample(patient_list, int(np.round(len(patient_list)*0.3)))
+    train_pats_list = random.sample(patient_list, int(np.round(len(patient_list)*0.75)))
+    val_pats_list = random.sample(patient_list, int(np.round(len(patient_list)*0.15)))
     test_pats_list = random.sample(patient_list, int(np.round(len(patient_list)-len(train_pats_list)-len(val_pats_list))))
 
     ### Load Passive Data ###
