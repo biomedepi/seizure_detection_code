@@ -184,18 +184,28 @@ def get_data_keys_sequential(file_list, config):
                     ev[1] = ev[0] + 10
 
                 if e == 0:
-                    n_segs = int(np.floor((ev[0])/config.frame)-1)
+                    n_segs = int(np.floor((ev[0])/config.frame))
                     seg_start = np.arange(0, n_segs)*config.frame
                     seg_stop = seg_start + config.frame
                     segments.extend(np.column_stack(([i]*n_segs, seg_start, seg_stop, np.zeros(n_segs))))
+
+                    n_seiz_segs = int(np.floor((ev[1]-segments[-1][2])/config.frame))
+                    seg_start_seiz = (np.arange(0, n_seiz_segs))*config.frame + segments[-1][2]
+                    seg_stop_seiz = seg_start_seiz + config.frame
+                    segments.extend(np.column_stack(([i]*n_seiz_segs, seg_start_seiz, seg_stop_seiz, np.ones(n_seiz_segs))))
                 else:
-                    n_segs = int(np.floor((ev[0] - events_times[e-1][1])/config.frame)-1)
+                    n_segs = int(np.floor((ev[0] - events_times[e-1][1])/config.frame))
                     seg_start = np.arange(0, n_segs)*config.frame + events_times[e-1][1]
                     seg_stop = seg_start + config.frame
                     segments.extend(np.column_stack(([i]*n_segs, seg_start, seg_stop, np.zeros(n_segs))))
+
+                    n_seiz_segs = int(np.floor((ev[1]-segments[-1][2])/config.frame))
+                    seg_start_seiz = (np.arange(0, n_seiz_segs))*config.frame + segments[-1][2]
+                    seg_stop_seiz = seg_start_seiz + config.frame
+                    segments.extend(np.column_stack(([i]*n_seiz_segs, seg_start_seiz, seg_stop_seiz, np.ones(n_seiz_segs))))
                 if e == len(events_times)-1:
-                    n_segs = int(np.floor((np.floor(file.tmax) - ev[1])/config.frame)-1)
-                    seg_start = np.arange(0, n_segs)*config.frame + ev[1]
+                    n_segs = int(np.floor((np.floor(file.tmax) - segments[-1][2])/config.frame))
+                    seg_start = np.arange(0, n_segs)*config.frame + segments[-1][2]
                     seg_stop = seg_start + config.frame
                     segments.extend(np.column_stack(([i]*n_segs, seg_start, seg_stop, np.zeros(n_segs))))
 
