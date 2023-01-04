@@ -595,7 +595,7 @@ def perf_measure_ovlp(y_true, y_pred, fs):
         for pr in pred_events:
             if getOverlap(tr, pr) > 0:
                 found = True
-        if found:
+        if not found:
             FN += 1
 
     return TP, FP, FN
