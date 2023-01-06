@@ -661,7 +661,7 @@ def get_metrics_scoring(pred_file):
         
     FA_epoch = total_FP_epoch*3600/total_N
 
-    score = sens_ovlp - 0.4*FA_epoch
+    score = sens_ovlp*100 - 0.4*FA_epoch
 
     print('Final score: ' + str(score))
 
