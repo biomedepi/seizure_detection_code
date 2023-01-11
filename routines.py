@@ -638,7 +638,7 @@ def get_metrics_scoring(pred_file, th):
     total_seiz = 0
 
     for i, y_pred in enumerate(y_preds):
-        total_N += len(y_pred)
+        total_N += len(y_pred)*2
         total_seiz += np.sum(y_trues[i])
 
         # Post process predictions (merge predicted events separated by 2 seconds and discard events smaller than 10 seconds)
