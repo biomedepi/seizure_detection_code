@@ -601,7 +601,7 @@ def perf_measure_ovlp(y_true, y_pred, fs):
     return TP, FP, FN
 
 
-def get_metrics_scoring(pred_file):
+def get_metrics_scoring(pred_file, th):
     ''' Get the score for the challenge.
 
     Args:
@@ -642,7 +642,7 @@ def get_metrics_scoring(pred_file):
         total_seiz += np.sum(y_trues[i])
 
         # Post process predictions (merge predicted events separated by 2 seconds and discard events smaller than 10 seconds)
-        y_pred = post_processing(y_pred, fs=1/2, th=0.5, margin=10)
+        y_pred = post_processing(y_pred, fs=1/2, th=th, margin=10)
 
         TP_epoch, FP_epoch, TN_epoch, FN_epoch = perf_measure_epoch(y_trues[i], y_pred)
         total_TP_epoch += TP_epoch
@@ -663,6 +663,8 @@ def get_metrics_scoring(pred_file):
 
     score = sens_ovlp*100 - 0.4*FA_epoch
 
+    print('Sensitivity (ovlp): ' + str(sens_ovlp*100) + ' %')
+    print('False alarm per hour (epoch): ' + str(FA_epoch))
     print('Final score: ' + str(score))
 
     return score, sens_ovlp, FA_epoch
